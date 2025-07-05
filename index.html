@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Bot Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Trading Bot Dashboard</h1>
+        <table id="trades-table">
+            <!-- Trades will be dynamically loaded here -->
+        </table>
+        <button id="refresh">Refresh Stats</button>
+    </div>
+    <script>
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTPZqX93vt2a4rdBKCjFMULIMitH3W7BUicLhewOTaY30hFIuWpdS-gZ04jJgsCn73ZLu5lnhsPgjLE/pub?gid=733778284&single=true&output=csv';
+
+        async function loadSheet() {
+          const res = await fetch(sheetUrl);
+          const text = await res.text();
+          const rows = text.trim().split('\n').map(row => row.split(','));
+
+          const table = document.getElementById('trades-table');
+          table.innerHTML = '';
+          // Show header, then newest rows first
+          if (rows.length > 1) {
+            const [header, ...dataRows] = rows;
+            // Render header
+            const headerTr = document.createElement('tr');
+            header.forEach(cell => {
+              const th = document.createElement('th');
+              th.textContent = cell;
+              headerTr.appendChild(th);
+            });
+            table.appendChild(headerTr);
+            // Render data in reverse order (newest first)
+            dataRows.reverse().forEach(row => {
+              const tr = document.createElement('tr');
+              row.forEach((cell, j) => {
+                const td = document.createElement('td');
+                td.textContent = cell;
+                if (j === 8) { // PnL column index
+                  const pnl = parseFloat(cell);
+                  if (!isNaN(pnl)) {
+                    td.className = pnl >= 0 ? 'profit' : 'loss';
+                  }
+                }
+                tr.appendChild(td);
+              });
+              table.appendChild(tr);
+            });
+          }
+        }
+
+        loadSheet();
+    </script>
+</body>
+</html>

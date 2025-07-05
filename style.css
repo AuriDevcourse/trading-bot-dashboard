@@ -1,0 +1,89 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f5f7fa 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-size: 13px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 48px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+    padding: 40px 32px 32px 32px;
+    transition: box-shadow 0.2s;
+}
+
+.container:hover {
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.14);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+#trades-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #f8fafc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+    margin-bottom: 1.2rem;
+    font-size: 0.92rem;
+}
+
+#trades-table th, #trades-table td {
+    padding: 0.85rem 0.6rem;
+    border-bottom: 1px solid #e5e9f2;
+    text-align: center;
+}
+
+#trades-table th {
+    background: #e0e7ff;
+    color: #2c3e50;
+    font-weight: 600;
+    border-bottom: 2px solid #b3bcdf;
+}
+
+#trades-table tr:last-child td {
+    border-bottom: none;
+}
+
+.profit {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.loss {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+button#refresh {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 32px;
+    background: linear-gradient(90deg, #4f8cff 0%, #2d6cdf 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    transition: background 0.2s, transform 0.1s;
+}
+
+button#refresh:hover {
+    background: linear-gradient(90deg, #2d6cdf 0%, #4f8cff 100%);
+    transform: translateY(-2px) scale(1.03);
+}
